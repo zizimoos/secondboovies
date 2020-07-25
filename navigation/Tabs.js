@@ -26,7 +26,7 @@ export default ({ navigation, route }) => {
     <Tabs.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused }) => {
-          console.log(route);
+          // console.log(route);
           let iconName = Platform.OS === "ios" ? "ios-" : "md-";
           if (route.name === "Movies") {
             iconName += "film";
