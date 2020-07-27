@@ -29,7 +29,9 @@ export default ({ navigation, route }) => {
   }, []);
   return (
     <View style={{ flex: 1, backgroundColor: "black", fontColor: "white" }}>
-      <Text style={{ color: "white" }}>{movies.nowPlaying?.length}</Text>
+      <Text style={{ color: "white" }}>
+        nowPlayingLength : {movies.nowPlaying?.length}
+      </Text>
       <Button
         onPress={() => navigation.navigate("Detail")}
         title="Go to Detail"
