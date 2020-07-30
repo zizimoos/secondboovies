@@ -2,7 +2,7 @@ import React, { useLayoutEffect } from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Tv from "../screens/Tv.js";
 import Search from "../screens/Search.js";
-import Movies from "../screens/Movies.js";
+import Movies from "../screens/Movies/index";
 import Favs from "../screens/Favs.js";
 import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
