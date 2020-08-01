@@ -1,30 +1,17 @@
 import React from "react";
 import styled from "styled-components/native";
 import PropTypes from "prop-types";
-import { Dimensions, Image, Text } from "react-native";
-import { apiImage } from "../../api";
-import Poster from "../Poster";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Votes from "../Votes";
+import Poster from "./Poster";
+import { apiImage } from "../api";
+import Votes from "./Votes";
+import { TouchableOpacity } from "react-native";
 
 const Container = styled.View`
-  width: 100%;
-  height: 100%;
-`;
-
-const BGImage = styled.Image`
-  width: 100%;
-  height: 100%;
-  opacity: 0.5;
-  position: absolute;
-`;
-
-const Content = styled.View`
-  height: 100%;
   flex-direction: row;
   justify-content: space-around;
-  align-items: center;
+  margin-bottom: 5px;
 `;
+
 const Data = styled.View`
   width: 50%;
 `;
@@ -59,35 +46,29 @@ const DetailText = styled.Text`
   padding-bottom: 2px;
 `;
 
-const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
-  <Container>
-    <BGImage resizeMode="cover" source={{ uri: apiImage(backgroundImage) }} />
-    <Content>
-      <Poster url={apiImage(poster)}></Poster>
+const Horizontal = ({ id, title, votes, poster, overview }) => {
+  return (
+    <Container>
+      <TouchableOpacity>
+        <Poster url={apiImage(poster)}></Poster>
+      </TouchableOpacity>
       <Data>
         <Title>{title.slice(0, 20)}</Title>
         <VotesContainer>
           <Votes votes={votes}></Votes>
         </VotesContainer>
-
         <Overview>{overview.slice(0, 100)}...</Overview>
-        <TouchableOpacity>
-          <DetailButton>
-            <DetailText style={{ color: "white" }}> View Detail </DetailText>
-          </DetailButton>
-        </TouchableOpacity>
       </Data>
-    </Content>
-  </Container>
-);
-
-Slide.propTypes = {
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  backgroundImage: PropTypes.string.isRequired,
-  votes: PropTypes.number.isRequired,
-  overview: PropTypes.string.isRequired,
-  poster: PropTypes.string.isRequired,
+    </Container>
+  );
 };
 
-export default Slide;
+Horizontal.propTypes = {
+  id: PropTypes.number.isRequired,
+  title: PropTypes.string.isRequired,
+  votes: PropTypes.number.isRequired,
+  poster: PropTypes.string.isRequired,
+  overview: PropTypes.string.isRequired,
+};
+
+export default Horizontal;
