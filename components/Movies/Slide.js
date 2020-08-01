@@ -1,10 +1,11 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/native";
 import PropTypes from "prop-types";
 import { Dimensions, Image, Text } from "react-native";
 import { apiImage } from "../../api";
 import Poster from "../Poster";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import Votes from "../Votes";
 
 const Container = styled.View`
   width: 100%;
@@ -31,14 +32,12 @@ const Title = styled.Text`
   color: white;
   font-weight: bold;
   font-size: 18px;
-  margin-bottom: 10px;
+  margin-bottom: 2px;
 `;
-const Votes = styled.Text`
-  color: white;
-  opacity: 0.7;
-  margin-bottom: 5px;
-  font-size: 12px;
+const VotesContainer = styled.View`
+  margin-bottom: 2px;
 `;
+
 const Overview = styled.Text`
   color: white;
   opacity: 0.7;
@@ -51,8 +50,13 @@ const DetailButton = styled.View`
   width: 50%;
   background-color: #e74c3c;
   padding: 4px;
+  padding-left: 4px;
   border-radius: 20px;
   text-align: center;
+`;
+const DetailText = styled.Text`
+  padding-left: 3px;
+  padding-bottom: 2px;
 `;
 
 const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
@@ -62,11 +66,14 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
       <Poster url={apiImage(poster)}></Poster>
       <Data>
         <Title>{title.slice(0, 20)}</Title>
-        <Votes>★ {votes} / 10</Votes>
-        <Overview>{overview.slice(0, 120)}...</Overview>
+        <VotesContainer>
+          <Votes votes={votes}></Votes>
+        </VotesContainer>
+
+        <Overview>{overview.slice(0, 100)}...</Overview>
         <TouchableOpacity>
           <DetailButton>
-            <Text style={{ color: "white" }}> View Detail </Text>
+            <DetailText style={{ color: "white" }}> View Detail </DetailText>
           </DetailButton>
         </TouchableOpacity>
       </Data>

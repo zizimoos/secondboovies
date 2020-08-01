@@ -1,7 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { Image } from "react-native";
+import styled from "styled-components/native";
 
 const Pimage = styled.Image`
   width: 100px;
