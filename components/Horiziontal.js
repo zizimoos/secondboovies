@@ -9,7 +9,7 @@ import { TouchableOpacity } from "react-native";
 const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
 `;
 
 const Data = styled.View`
@@ -57,7 +57,7 @@ const Horizontal = ({ id, title, votes, poster, overview }) => {
         <VotesContainer>
           <Votes votes={votes}></Votes>
         </VotesContainer>
-        <Overview>{overview.slice(0, 100)}...</Overview>
+        <Overview>{overview.slice(0, 150)}...</Overview>
       </Data>
     </Container>
   );
