@@ -3,6 +3,6 @@ import { View, Text } from "react-native";
 
 export default () => (
   <View>
-    <Text>Search</Text>
+    <Text>Search.....</Text>
   </View>
 );
