@@ -12,6 +12,7 @@ export default ({ navigation, route }) => {
     popularError: null,
     upcomingError: null,
   });
+
   const getData = async () => {
     const [nowPlaying, nowPlayingError] = await movieApi.nowPlaying();
     const [popular, popularError] = await movieApi.popular();

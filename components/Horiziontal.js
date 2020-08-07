@@ -5,7 +5,7 @@ import Poster from "./Poster";
 import { apiImage } from "../api";
 import Votes from "./Votes";
 import { TouchableOpacity } from "react-native";
-
+import { formatDate } from "../components/utils";
 const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
@@ -18,11 +18,15 @@ const Data = styled.View`
 const Title = styled.Text`
   color: white;
   font-weight: bold;
-  font-size: 18px;
+  font-size: 15px;
   margin-bottom: 2px;
 `;
 const VotesContainer = styled.View`
   margin-bottom: 2px;
+`;
+const ReleaseDate = styled.Text`
+  color: white;
+  font-size: 12px;
 `;
 
 const Overview = styled.Text`
@@ -46,20 +50,20 @@ const DetailText = styled.Text`
   padding-bottom: 2px;
 `;
 
-const Horizontal = ({ id, title, votes, poster, overview }) => {
+const Horizontal = ({ id, title, votes, poster, overview, releaseDate }) => {
   return (
-    <Container>
-      <TouchableOpacity>
-        <Poster url={apiImage(poster)}></Poster>
-      </TouchableOpacity>
-      <Data>
-        <Title>{title.slice(0, 20)}</Title>
-        <VotesContainer>
-          <Votes votes={votes}></Votes>
-        </VotesContainer>
-        <Overview>{overview.slice(0, 150)}...</Overview>
-      </Data>
-    </Container>
+    <TouchableOpacity>
+      <Container>
+        <TouchableOpacity>
+          <Poster url={poster}></Poster>
+        </TouchableOpacity>
+        <Data>
+          <Title>{title.slice(0, 20)}</Title>
+          {releaseDate ? <ReleaseDate>{releaseDate}</ReleaseDate> : null}
+          <Overview>{overview.slice(0, 150)}...</Overview>
+        </Data>
+      </Container>
+    </TouchableOpacity>
   );
 };
 
@@ -67,6 +71,7 @@ Horizontal.propTypes = {
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,
+  releaseDate: PropTypes.string,
   poster: PropTypes.string.isRequired,
   overview: PropTypes.string.isRequired,
 };

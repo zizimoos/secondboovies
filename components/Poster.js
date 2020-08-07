@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components/native";
+import { apiImage } from "../api";
 
 const Pimage = styled.Image`
   width: 100px;
@@ -10,7 +11,7 @@ const Pimage = styled.Image`
 `;
 
 const Poster = ({ url }) => {
-  return <Pimage source={{ uri: url }} />;
+  return <Pimage source={{ uri: apiImage(url) }} />;
 };
 
 Poster.propTypes = {

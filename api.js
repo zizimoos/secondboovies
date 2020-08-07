@@ -31,10 +31,11 @@ export const movieApi = {
   movie: (id) => getAnything(`/movie/${id}`),
   discover: () => getAnything("/discover/movie"),
 };
+
 export const tvApi = {
   today: () => getAnything("/tv/airing_today"),
   thisWeek: () => getAnything("/tv/on_the_air"),
-  topRated: () => makeRequest("/tv/top_rated"),
+  topRated: () => getAnything("/tv/top_rated"),
   popular: () => getAnything("/tv/popular"),
   search: (query) => getAnything("/search/tv", { query }),
   show: (id) => getAnything(`/tv/${id}`),

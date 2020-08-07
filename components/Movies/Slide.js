@@ -63,7 +63,7 @@ const Slide = ({ id, title, backgroundImage, votes, overview, poster }) => (
   <Container>
     <BGImage resizeMode="cover" source={{ uri: apiImage(backgroundImage) }} />
     <Content>
-      <Poster url={apiImage(poster)}></Poster>
+      <Poster url={poster}></Poster>
       <Data>
         <Title>{title.slice(0, 20)}</Title>
         <VotesContainer>
