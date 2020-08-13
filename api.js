@@ -41,4 +41,7 @@ export const tvApi = {
   show: (id) => getAnything(`/tv/${id}`),
 };
 
-export const apiImage = (path) => `https://image.tmdb.org/t/p/w500${path}`;
+export const apiImage = (path) =>
+  path
+    ? `https://image.tmdb.org/t/p/w500${path}`
+    : "https://filmlexikon.hu/media/persons/portraits/t/tessa-thompson--RH6EFzIocL.jpg";

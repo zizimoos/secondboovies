@@ -6,8 +6,9 @@ const Text = styled.Text`
   color: white;
   font-weight: bold;
   font-size: 16px;
-  margin-left: 20px;
-  margin-bottom: 5px;
+  margin-left: 0px;
+  margin-bottom: 10px;
+  text-align: center;
 `;
 
 const Title = ({ title }) => {
