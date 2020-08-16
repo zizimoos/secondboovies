@@ -24,9 +24,9 @@ const TestView = styled.Text`
 `;
 const UpcomingContainer = styled.View``;
 
-export default ({ loading, today, thisWeek, topRated, popular }) => {
+export default ({ refreshFn, loading, today, thisWeek, topRated, popular }) => {
   return (
-    <ScrollContainer loading={loading}>
+    <ScrollContainer loading={loading} refreshFn={refreshFn}>
       <>
         <Container style={{ backgroundColor: "black" }}>
           <Title title={"Today Shows"}></Title>

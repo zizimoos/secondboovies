@@ -2,7 +2,7 @@ import * as React from "react";
 import { movieApi } from "../../api";
 import MoviesPresenter from "./MoviesPresenter";
 
-export default ({ navigation, route }) => {
+export default () => {
   const [movies, setMovies] = React.useState({
     loading: true,
     nowPlaying: [],
@@ -27,9 +27,10 @@ export default ({ navigation, route }) => {
       upcomingError,
     });
   };
+
   React.useEffect(() => {
     getData();
   }, []);
 
-  return <MoviesPresenter {...movies}></MoviesPresenter>;
+  return <MoviesPresenter refreshFn={getData} {...movies}></MoviesPresenter>;
 };

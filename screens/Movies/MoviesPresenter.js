@@ -7,6 +7,7 @@ import Title from "../../components/Title";
 import { ScrollView } from "react-native";
 import Vertical from "../../components/Vertical";
 import Horizontal from "../../components/Horiziontal";
+import ScrollContainer from "../../components/ScrollContainer";
 
 const { width: WIDTH, height: HEIGHT } = Dimensions.get("window");
 
@@ -20,9 +21,10 @@ const Container = styled.View``;
 
 const UpcomingContainer = styled.View``;
 
-export default ({ loading, nowPlaying, popular, upcoming }) => {
+export default ({ refreshFn, loading, nowPlaying, popular, upcoming }) => {
   return (
-    <ScrollView
+    <ScrollContainer
+      refreshFn={refreshFn}
       vertical
       style={{
         backgroundColor: "black",
@@ -85,6 +87,6 @@ export default ({ loading, nowPlaying, popular, upcoming }) => {
           </UpcomingContainer>
         </>
       )}
-    </ScrollView>
+    </ScrollContainer>
   );
 };

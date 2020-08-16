@@ -6,6 +6,7 @@ import { ScrollView } from "react-native";
 
 import Title from "../../components/Title";
 import Vertical from "../../components/Vertical";
+import ScrollContainer from "../../components/ScrollContainer";
 
 const Container = styled.ScrollView`
   background-color: black;
@@ -16,7 +17,11 @@ const MoviesSearchContainer = styled.View`
 
 export default ({ onChange, onSubmit, keyword, movies, shows }) => {
   return (
-    <Container>
+    <ScrollContainer
+      refreshFn={onSubmit}
+      loading={false}
+      contentContainerStyle={{ paddingTop: 10 }}
+    >
       <Input
         placeholder={` Search term `}
         value={keyword}
@@ -59,6 +64,6 @@ export default ({ onChange, onSubmit, keyword, movies, shows }) => {
           ))}
         </ScrollView>
       </MoviesSearchContainer>
-    </Container>
+    </ScrollContainer>
   );
 };

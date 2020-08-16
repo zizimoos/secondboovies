@@ -2,7 +2,7 @@ import * as React from "react";
 import { tvApi } from "../../api";
 import TvShowsPresenter from "./TvShowsPresenter";
 
-export default ({ navigation, route }) => {
+export default () => {
   const [tvShows, setTvShows] = React.useState({
     loading: true,
     today: [],
@@ -36,5 +36,5 @@ export default ({ navigation, route }) => {
     getData();
   }, []);
 
-  return <TvShowsPresenter {...tvShows}></TvShowsPresenter>;
+  return <TvShowsPresenter refreshFn={getData} {...tvShows}></TvShowsPresenter>;
 };
