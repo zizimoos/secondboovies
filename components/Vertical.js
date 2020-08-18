@@ -5,6 +5,7 @@ import Poster from "./Poster";
 import { apiImage } from "../api";
 import Votes from "./Votes";
 import { TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
 
 const Container = styled.View`
   margin-right: 2px;
@@ -14,9 +15,20 @@ const Title = styled.Text`
   color: white;
 `;
 
-const Vertical = ({ id, poster, title, votes }) => {
+const Vertical = ({ id, poster, title, votes, overview, releaseDate }) => {
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    navigation.navigate("Detail", {
+      id,
+      title,
+      votes,
+      poster,
+      overview,
+      releaseDate,
+    });
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={goToDetail}>
       <Container>
         <Poster url={poster}></Poster>
         <Title>{title.length > 10 ? `${title.slice(0, 10)}...` : title}</Title>

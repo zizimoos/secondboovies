@@ -6,6 +6,7 @@ import { apiImage } from "../api";
 import Votes from "./Votes";
 import { TouchableOpacity } from "react-native";
 import { formatDate } from "../components/utils";
+import { useNavigation } from "@react-navigation/native";
 const Container = styled.View`
   flex-direction: row;
   justify-content: space-around;
@@ -51,12 +52,22 @@ const DetailText = styled.Text`
 `;
 
 const Horizontal = ({ id, title, votes, poster, overview, releaseDate }) => {
+  const navigation = useNavigation();
+  const goToDetail = () => {
+    navigation.navigate("Detail", {
+      id,
+      title,
+      votes,
+      poster,
+      overview,
+      releaseDate,
+    });
+  };
   return (
-    <TouchableOpacity>
+    <TouchableOpacity onPress={goToDetail}>
       <Container>
-        <TouchableOpacity>
-          <Poster url={poster}></Poster>
-        </TouchableOpacity>
+        <Poster url={poster}></Poster>
+
         <Data>
           <Title>{title.slice(0, 20)}</Title>
           {releaseDate ? <ReleaseDate>{releaseDate}</ReleaseDate> : null}
