@@ -8,9 +8,14 @@ import Poster from "../components/Poster";
 
 const Text = styled.Text`
   color: white;
+  padding: 10px;
 `;
 const Container = styled.View`
   height: ${Dimensions.get("window").height}px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 `;
 const BGImage = styled.Image`
   width: 100%;
@@ -18,6 +23,8 @@ const BGImage = styled.Image`
   opacity: 0.5;
   position: absolute;
 `;
+
+const Info = styled.View``;
 
 export default ({
   navigation,
@@ -30,20 +37,26 @@ export default ({
       overview,
       releaseDate,
       backgroundImage,
+      refreshFn,
+      loading,
     },
   },
 }) => {
   navigation.setOptions({ title });
   return (
-    <ScrollContainer>
+    <ScrollContainer loading={loading} refreshFn={refreshFn}>
       <Container>
         <BGImage source={{ uri: apiImage(poster) }} />
-        <Poster url={poster}></Poster>
-        <Text>{id}</Text>
-        <Text>{title}</Text>
-        <Text>{overview}</Text>
-        <Text>{releaseDate}</Text>
-        <Text>{votes}</Text>
+        {/* <Poster url={poster}></Poster> */}
+        <Text style={{ fontSize: 24 }}>{title}</Text>
+        <Info>
+          <Text>
+            ★ {votes} / 10 &nbsp; ∙ &nbsp; Release Date : {releaseDate}
+          </Text>
+          {overview ? <Text>Overview</Text> : <Text></Text>}
+
+          <Text>{overview}</Text>
+        </Info>
       </Container>
     </ScrollContainer>
   );
