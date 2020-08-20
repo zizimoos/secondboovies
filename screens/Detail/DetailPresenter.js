@@ -1,10 +1,10 @@
 import * as React from "react";
 
 import styled from "styled-components/native";
-import ScrollContainer from "../components/ScrollContainer";
-import { apiImage } from "../api";
+import ScrollContainer from "../../components/ScrollContainer";
+import { apiImage } from "../../api";
 import { Dimensions } from "react-native";
-import Poster from "../components/Poster";
+import Poster from "../../components/Poster";
 
 const Text = styled.Text`
   color: white;
@@ -27,27 +27,24 @@ const BGImage = styled.Image`
 const Info = styled.View``;
 
 export default ({
-  navigation,
-  route: {
-    params: {
-      id,
-      title,
-      votes,
-      poster,
-      overview,
-      releaseDate,
-      backgroundImage,
-      refreshFn,
-      loading,
-    },
-  },
+  id,
+  title,
+  votes,
+  poster,
+  overview,
+  releaseDate,
+  backgroundImage,
+  background_path,
+  refreshFn,
+  loading,
 }) => {
-  navigation.setOptions({ title });
   return (
     <ScrollContainer loading={loading} refreshFn={refreshFn}>
       <Container>
-        <BGImage source={{ uri: apiImage(poster) }} />
-        {/* <Poster url={poster}></Poster> */}
+        <BGImage
+          source={{ uri: apiImage(backgroundImage || background_path) }}
+        />
+        <Poster url={poster}></Poster>
         <Text style={{ fontSize: 24 }}>{title}</Text>
         <Info>
           <Text>
