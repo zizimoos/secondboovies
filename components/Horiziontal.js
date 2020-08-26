@@ -51,10 +51,19 @@ const DetailText = styled.Text`
   padding-bottom: 2px;
 `;
 
-const Horizontal = ({ id, title, votes, poster, overview, releaseDate }) => {
+const Horizontal = ({
+  isTv = false,
+  id,
+  title,
+  votes,
+  poster,
+  overview,
+  releaseDate,
+}) => {
   const navigation = useNavigation();
   const goToDetail = () => {
     navigation.navigate("Detail", {
+      isTv,
       id,
       title,
       votes,
@@ -79,6 +88,7 @@ const Horizontal = ({ id, title, votes, poster, overview, releaseDate }) => {
 };
 
 Horizontal.propTypes = {
+  isTv: PropTypes.string,
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   votes: PropTypes.number.isRequired,

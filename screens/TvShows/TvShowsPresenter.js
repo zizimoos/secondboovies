@@ -37,6 +37,7 @@ export default ({ refreshFn, loading, today, thisWeek, topRated, popular }) => {
           >
             {today.map((show) => (
               <Vertical
+                isTv={true}
                 key={show.id}
                 id={show.id}
                 title={show.original_name.slice(0, 7)}
@@ -50,6 +51,7 @@ export default ({ refreshFn, loading, today, thisWeek, topRated, popular }) => {
           <Swiper loop timeout={3} controlsEnabled={false}>
             {thisWeek.map((movie) => (
               <Slide
+                isTv={true}
                 key={movie.id}
                 id={movie.id}
                 title={movie.original_name}
@@ -65,6 +67,7 @@ export default ({ refreshFn, loading, today, thisWeek, topRated, popular }) => {
         <UpcomingContainer>
           {topRated.map((movie) => (
             <Horizontal
+              isTv={true}
               key={movie.id}
               id={movie.id}
               title={movie.original_name}

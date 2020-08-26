@@ -55,6 +55,7 @@ export default ({ onChange, onSubmit, keyword, movies, shows }) => {
         >
           {shows.map((show) => (
             <Vertical
+              isTv={true}
               key={show.id}
               id={show.id}
               title={show.original_name.slice(0, 7)}

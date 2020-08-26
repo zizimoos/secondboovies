@@ -61,6 +61,7 @@ const DetailText = styled.Text`
 `;
 
 const Slide = ({
+  isTv = false,
   id,
   title,
   backgroundImage,
@@ -72,6 +73,7 @@ const Slide = ({
   const navigation = useNavigation();
   const goToDetail = () => {
     navigation.navigate("Detail", {
+      isTv,
       id,
       title,
       votes,

@@ -15,10 +15,19 @@ const Title = styled.Text`
   color: white;
 `;
 
-const Vertical = ({ id, poster, title, votes, overview, releaseDate }) => {
+const Vertical = ({
+  isTv = false,
+  id,
+  poster,
+  title,
+  votes,
+  overview,
+  releaseDate,
+}) => {
   const navigation = useNavigation();
   const goToDetail = () => {
     navigation.navigate("Detail", {
+      isTv,
       id,
       title,
       votes,

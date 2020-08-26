@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { AppLoading } from "expo";
 import { Asset } from "expo-asset";
 
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import Stack from "./navigation/Stack";
 import Tabs from "./navigation/Tabs";
@@ -27,7 +27,7 @@ export default function App() {
       "https://filmlexikon.hu/media/persons/portraits/t/tessa-thompson--RH6EFzIocL.jpg",
       require("./assets/splash.png"),
     ]);
-    const fonts = cacheFonts([Ionicons.font]);
+    const fonts = cacheFonts([Ionicons.font, FontAwesome.font]);
     return Promise.all([...images, ...fonts]);
     // return Promise.all(...fonts);
   };

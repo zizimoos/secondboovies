@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from "react";
 import DetailPresenter from "./DetailPresenter";
 import { movieApi, tvApi } from "../../api";
+import * as WebBrowser from "expo-web-browser";
 
 const DetailContainer = ({
   navigation,
   route: {
     params: {
+      isTv,
       id,
       title,
       votes,
@@ -13,32 +15,34 @@ const DetailContainer = ({
       overview,
       releaseDate,
       backgroundImage,
-      refreshFn,
-      loading,
     },
   },
 }) => {
-  const [movie, setMovie] = useState({
+  const [loading, setLoading] = useState(true);
+  const [detail, setDetail] = useState({
     title,
     votes,
     poster,
     overview,
     releaseDate,
     backgroundImage,
-    refreshFn,
-    loading,
+    videos: {
+      results: [],
+    },
   });
   const getData = async () => {
-    const [movieDetail, movieDetailError] = await movieApi.movie(id);
-    const [showDetail, showDetailError] = await tvApi.show(id);
-    setMovie({
-      ...movieDetail,
-      title: movieDetail.title,
-      backgroundImage: movieDetail.backdrop_path,
-      poster: movieDetail.poster_path,
-      overview: movieDetail.overview,
-      votes: movieDetail.vote_average,
+    const [getDetail, getDetailError] = isTv
+      ? await tvApi.show(id)
+      : await movieApi.movie(id);
+    setDetail({
+      ...getDetail,
+      title: isTv ? getDetail.original_name : getDetail.title,
+      backgroundImage: getDetail.backdrop_path,
+      poster: getDetail.poster_path,
+      overview: getDetail.overview,
+      votes: getDetail.vote_average,
     });
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -48,8 +52,17 @@ const DetailContainer = ({
   React.useLayoutEffect(() => {
     navigation.setOptions({ title });
   });
-
-  return <DetailPresenter {...movie}></DetailPresenter>;
+  const openBrowser = async (url) => {
+    await WebBrowser.openBrowserAsync(url);
+  };
+  return (
+    <DetailPresenter
+      openBrowser={openBrowser}
+      movie={detail}
+      loading={loading}
+      refreshFn={getData}
+    ></DetailPresenter>
+  );
 };
 
 export default DetailContainer;
