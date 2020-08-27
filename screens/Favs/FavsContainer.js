@@ -1,6 +1,7 @@
-import * as React from "react";
+import React from "react";
+import FavsPresenter from "./FavsPresenter";
 import { View, Text } from "react-native";
-import { movieApi } from "../api";
+import { movieApi } from "../../api";
 
 export default () => {
   const [favs, setFavs] = React.useState({
@@ -15,9 +16,5 @@ export default () => {
   React.useEffect(() => {
     getData();
   }, []);
-  return (
-    <View>
-      <Text>Favorites length : {favs.discover?.length}</Text>
-    </View>
-  );
+  return <FavsPresenter {...favs}></FavsPresenter>;
 };

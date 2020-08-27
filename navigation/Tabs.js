@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import Tv from "../screens/TvShows/index";
 import Search from "../screens/Search/index";
 import Movies from "../screens/Movies/index";
-import Favs from "../screens/Favs.js";
+import Favs from "../screens/Favs/index";
 import { Platform } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -17,7 +17,7 @@ export default ({ navigation, route }) => {
     navigation.setOptions({
       title: name,
       headerStyle: {
-        backgroundColor: name === "Favs" ? "grey" : "black",
+        backgroundColor: name === "Favs" ? "black" : "black",
         borderBottomColor: "black",
       },
     });
